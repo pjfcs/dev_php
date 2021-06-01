@@ -8,7 +8,7 @@ services:
           context: ./php
           dockerfile: Dockerfile
         image: dev_php-php
-        container_name: dev_php-php
+        container_name: dev_php-php1
         restart: unless-stopped
         working_dir: /var/www/
         volumes:
@@ -21,9 +21,10 @@ services:
         restart: unless-stopped
         environment:
             POSTGRES_PASSWORD: ${DB_PASSWORD}
+            #PGDATA: /var/lib/postgresql/data/
         volumes:
             - ./postgresql/scripts:/docker-entrypoint-initdb.d
-            - ./postgresql/dados:/var/lib/postgresql/data
+            #- ./postgresql/dados:/var/lib/postgresql/data
         networks:
             - dev_php_net
     app:
